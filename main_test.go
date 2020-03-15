@@ -5,16 +5,6 @@ import (
 	"testing"
 )
 
-// func TestFirstVerse(t *testing.T) {
-// 	got := Verse()
-// 	expected := "99 bottles of beer on the wall, 99 bottles of beer.\n" +
-// 		"Take one down, pass it around. 98 bottles of beer on the wall."
-
-// 	if got != expected {
-// 		t.Errorf("Got: %s\nExp: %s", got, expected)
-// 	}
-// }
-
 func TestVerse(t *testing.T) {
 	tests := []struct {
 		bottles  int
@@ -29,6 +19,11 @@ func TestVerse(t *testing.T) {
 			bottles: 98,
 			expected: "98 bottles of beer on the wall, 98 bottles of beer.\n" +
 				"Take one down, pass it around. 97 bottles of beer on the wall.",
+		},
+		{
+			bottles: 3,
+			expected: "3 bottles of beer on the wall, 3 bottles of beer.\n" +
+				"Take one down, pass it around. 2 bottles of beer on the wall.",
 		},
 		{
 			bottles: 2,

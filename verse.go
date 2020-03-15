@@ -14,10 +14,14 @@ type Verse interface {
 }
 
 func GetVerse(bottles int) Verse {
-	if bottles <= 2 {
-		return NonDefaultVerse{DefaultVerse{bottles: bottles}}
+	switch bottles {
+	case 1:
+		return Verse_1{DefaultVerse{bottles: bottles}}
+	case 0:
+		return Verse_0{DefaultVerse{bottles: bottles}}
+	default:
+		return DefaultVerse{bottles}
 	}
-	return DefaultVerse{bottles}
 }
 
 type DefaultVerse struct {
@@ -29,7 +33,7 @@ func (v DefaultVerse) Action() string {
 }
 
 func (v DefaultVerse) Beverage() string {
-	return fmt.Sprintf("%s %s", v.Pronoun(), v.Container())
+	return fmt.Sprintf("%d %s", v.bottles, v.Container())
 }
 
 func (v DefaultVerse) Container() string {
@@ -42,7 +46,7 @@ func (v DefaultVerse) Pronoun() string {
 
 func (v DefaultVerse) String() string {
 	call := fmt.Sprintf("%s of beer on the wall, %s of beer.", capitalize(v.Beverage()), v.Beverage())
-	response := fmt.Sprintf("%s %s of beer on the wall.", v.Action(), v.Successor().Beverage())
+	response := fmt.Sprintf("%s %s of beer on the wall.", v.Action(), capitalize(v.Successor().Beverage()))
 	return fmt.Sprintf("%s\n%s", call, response)
 }
 
