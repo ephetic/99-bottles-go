@@ -48,7 +48,7 @@ func TestVerse(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(fmt.Sprintf("%d", tt.bottles), func(t *testing.T) {
-			got := Verse(tt.bottles)
+			got := GetVerse(tt.bottles).String()
 			expected := tt.expected
 			if got != expected {
 				t.Errorf("Got:\n%s\nExpected:\n%s", got, expected)
