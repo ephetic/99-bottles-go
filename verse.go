@@ -7,8 +7,6 @@ import (
 type Verse interface {
 	Action() string
 	Beverage() string
-	Container() string
-	Pronoun() string
 	String() string
 	Successor() Verse
 }
@@ -33,15 +31,7 @@ func (v DefaultVerse) Action() string {
 }
 
 func (v DefaultVerse) Beverage() string {
-	return fmt.Sprintf("%d %s", v.bottles, v.Container())
-}
-
-func (v DefaultVerse) Container() string {
-	return "bottles"
-}
-
-func (v DefaultVerse) Pronoun() string {
-	return fmt.Sprint(v.bottles)
+	return fmt.Sprintf("%d bottles", v.bottles)
 }
 
 func (v DefaultVerse) String() string {

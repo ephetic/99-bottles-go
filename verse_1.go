@@ -10,13 +10,8 @@ func (v Verse_1) Action() string {
 	return "Take it down, pass it around."
 }
 
-// ! copied exactly from DefaultVerse to get correct dispatch for Verse_1.Container
 func (v Verse_1) Beverage() string {
-	return fmt.Sprintf("%d %s", v.bottles, v.Container())
-}
-
-func (v Verse_1) Container() string {
-	return "bottle"
+	return fmt.Sprintf("%d bottle", v.bottles)
 }
 
 // ! copied exactly from DefaultVerse to get correct dispatch for Verse_1.{Action, Beverage}
