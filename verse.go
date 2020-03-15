@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"unicode"
 )
 
 type Verse interface {
@@ -14,9 +15,9 @@ type Verse interface {
 func GetVerse(bottles int) Verse {
 	switch bottles {
 	case 1:
-		return Verse_1{DefaultVerse{bottles: bottles}}
+		return Verse_1{DefaultVerse{bottles}}
 	case 0:
-		return Verse_0{DefaultVerse{bottles: bottles}}
+		return Verse_0{DefaultVerse{bottles}}
 	default:
 		return DefaultVerse{bottles}
 	}
@@ -42,4 +43,13 @@ func (v DefaultVerse) String() string {
 
 func (v DefaultVerse) Successor() Verse {
 	return GetVerse(v.bottles - 1)
+}
+
+func capitalize(str string) string {
+	if len(str) == 0 {
+		return ""
+	}
+	tmp := []rune(str)
+	tmp[0] = unicode.ToUpper(tmp[0])
+	return string(tmp)
 }
